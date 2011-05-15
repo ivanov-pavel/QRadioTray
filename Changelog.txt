@@ -1,5 +1,9 @@
 TODO
 
+1.19
+* .pro file updated.
+* qradiotraysetup.sh created for build and install .deb package.
+
 1.18
 * updated translations.
 

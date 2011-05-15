@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.19
+Name=Tray radio player
+Comment=Play radio streams
+Name[ru]=Проигрыватель радио в трее
+Comment[ru]=Проигрывание радио потоков
+Exec=/usr/local/qradiotray/qradiotray
+Icon=/usr/local/qradiotray/qradiotray.png
+Terminal=false
+Type=Application
+Categories=AudioVideo;Player;
+

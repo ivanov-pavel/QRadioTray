@@ -106,7 +106,7 @@ bool Application::configure()
     trayIconList.append( ":/images/radio-active.png"   );
     currTrayIcon = 0;
 
-    // Setup player.    
+    // Setup player.
     connect( &player, SIGNAL( playerTick( quint64 ) ), SLOT( animateIcon( quint64 ) ) );
     connect( &player, SIGNAL( playing() ), SLOT( onPlayerPlay() ) );
     connect( &player, SIGNAL( paused() ), SLOT( onPlayerPause() ) );
@@ -248,7 +248,7 @@ bool Application::configure()
     // Setup tray item.
     trayItem.setIcon( QIcon( ":/images/radio-passive.png" ) );
     trayItem.show();
-    trayItem.showMessage( tr( "QRadioTray" ), tr( "Program started!" ), QSystemTrayIcon::Information );    
+    trayItem.showMessage( tr( "QRadioTray" ), tr( "Program started!" ), QSystemTrayIcon::Information );
     connect( &trayItem, SIGNAL( activated( QSystemTrayIcon::ActivationReason ) ),
                         SLOT( processTrayActivation( QSystemTrayIcon::ActivationReason ) ) );
     return true;

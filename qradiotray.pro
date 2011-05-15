@@ -1,16 +1,23 @@
 TEMPLATE = app
-TARGET = QRadioTray
+TARGET = qradiotray
 DEPENDPATH += . debug release src ui translations
 INCLUDEPATH += . src
 UI_DIR = tmp
 MOC_DIR = tmp
 RCC_DIR = tmp
 
+#
+# Modules.
+#
+
 QT += core network phonon
-CONFIG += qxt
 QXT += core gui
 
-# CONFIG += debug_and_release build_all
+#
+# Build config.
+#
+
+CONFIG += qxt
 CONFIG(debug, debug|release) {
     DEFINES += DEBUG
     linux-g++: OBJECTS_DIR = debug
@@ -24,6 +31,44 @@ else {
     linux-g++: OBJECTS_DIR = release
     DESTDIR = release
 }
+
+#
+# Install config.
+#
+
+linux-g++ {
+    INSTALLPATH = /usr/local/qradiotray
+    target.path = $$INSTALLPATH
+    target.files = release/qradiotray
+    config.path = /$(HOME)
+    config.files = config.ini
+    icons.path = $$INSTALLPATH
+    icons.files = qradiotray.png
+    desktop.path = /usr/share/applications
+    desktop.files = qradiotray.desktop
+}
+
+win32 {
+    INSTALLPATH = C:\qradiotray
+    target.path = $$INSTALLPATH
+    target.files = release\qradiotray.exe
+    config.path = $$INSTALLPATH
+    config.files = config.ini
+    icons.path = $$INSTALLPATH
+    icons.files = qradiotray.png
+    dlls.path = $$INSTALLPATH
+    dlls.files = QtCore4.dll QtGui4.dll QtNetwork4.dll phonon4.dll mingwm10.dll libgcc_s_dw2-1.dll
+    backends.path = $$INSTALLPATH\phonon_backend
+    backends.files = phonon_ds94.dll
+}
+
+INSTALLS = target config icons
+linux-g++:INSTALLS += desktop
+win32:INSTALLS += dlls backends
+
+#
+# Files.
+#
 
 TRANSLATIONS += \
     qradiotray_en.ts \
@@ -53,7 +98,7 @@ FORMS += \
     aboutdialog.ui
 
 RESOURCES += resources.qrc
-win32:RC_FILE = QRadioTray.rc
+win32:RC_FILE = qradiotray.rc
 
 OTHER_FILES += \
     README \
